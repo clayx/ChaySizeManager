@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/com_title_right_text_layout" />
+
+    <RelativeLayout
+        android:id="@+id/size_wheel_top_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/size_wheel_bg">
+
+        <LinearLayout
+            android:id="@+id/size_wheel_seekbar_whole_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="尺码选择"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <com.chay.test.chaysizemanager.wheelView.view.MoreOptionsView
+        android:id="@+id/size_wheel_more_opions_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30.5dp" />
+
+</LinearLayout>

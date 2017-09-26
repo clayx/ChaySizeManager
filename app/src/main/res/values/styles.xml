@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--标题栏背景-->
+    <style name="title_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/com_title_background_height</item>
+        <item name="android:background">@drawable/com_title_bg</item>
+    </style>
+
+    <!--标题按钮文字的颜色风格-->
+    <style name="title_txt_btn_style">
+        <item name="android:textColor">@drawable/title_btn_txt_selector</item>
+        <item name="android:textSize">@dimen/com_title_text_both_side_size</item>
+    </style>
+
+    <!--对话框通用风格-->
+    <style name="sex_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否全屏 -->
+        <item name="android:windowFullscreen">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明   去掉背景色边框也就去掉了 -->
+        <item name="android:windowBackground">@color/transport_color</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+</resources>

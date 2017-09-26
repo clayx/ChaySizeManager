@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/pickerview_country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/grey"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:id="@+id/pickerview_country_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pickerview_country_name"
+            android:layout_marginTop="13.5dp">
+
+            <ImageView
+                android:id="@+id/pickerview_country_iv"
+                android:layout_width="54dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY" />
+
+            <com.chay.test.chaysizemanager.wheelView.lib.WheelView
+                android:id="@+id/pickerview_country_wheelview"
+                android:layout_width="54dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/pickerview_line_iv"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/pickerview_country_name"
+            android:layout_marginTop="13.5dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/pickerview_country_rl"
+            android:background="@drawable/pickerview_line"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

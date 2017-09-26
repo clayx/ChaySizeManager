@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--通用标题栏高度-->
+    <dimen name="com_title_background_height">48dp</dimen>
+    <dimen name="com_title_text_size">18sp</dimen>
+    <dimen name="com_button_right_padding">16sp</dimen>
+    <!--标题两侧文字大小-->
+    <dimen name="com_title_text_both_side_size">15sp</dimen>
+
+    <!-- 选项文字大小 需要配合 bools.xml 的 pickerview_customTextSize 为 true 才有效果-->
+    <dimen name="pickerview_textsize">12sp</dimen>
+</resources>

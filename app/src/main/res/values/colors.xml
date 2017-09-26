@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--黑字-->
+    <color name="black">#333333</color>
+    <!--通用分割线颜色-->
+    <color name="space_line">#D8D8D8</color>
+    <!--灰字-->
+    <color name="grey">#A1A1A1</color>
+    <!--红色-->
+    <color name="red">#ff3b30</color>
+    <color name="red_foc">#a80319</color>
+    <!--白色-->
+    <color name="white">#FFFFFF</color>
+    <!--水波纹效果-->
+    <color name="rippelColor">#000000</color>
+    <!--通用空白背景色-->
+    <color name="page_bg">#efeff4</color>
+    <!-- 透明色 -->
+    <color name="transport_color">#00ffffff</color>
+
+    <color name="pickerview_wheelview_textcolor_out">#a1a1a1</color>
+    <color name="pickerview_wheelview_textcolor_center">#d2041f</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d2041f</color>
+</resources>

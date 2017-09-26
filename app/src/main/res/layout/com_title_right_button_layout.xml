@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 通用标题 ，右边为按钮 !-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/title_style">
+
+    <com.chay.test.chaysizemanager.otherView.RippleView xmlns:ripple="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/page_title_back_rip"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        ripple:rv_centered="true"
+        ripple:rv_zoom="true"
+        ripple:rv_zoomScale="1.3">
+
+        <ImageView
+            android:id="@+id/page_title_back_img"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/com_title_back_selector" />
+    </com.chay.test.chaysizemanager.otherView.RippleView>
+
+    <TextView
+        android:id="@+id/page_title_text_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/right_button"
+        android:layout_toRightOf="@+id/page_title_back_rip"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/com_title_text_size" />
+
+    <Button
+        android:id="@+id/right_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/com_button_right_padding"
+        android:background="@drawable/title_more_selector" />
+
+</RelativeLayout>

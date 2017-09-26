@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/com_title_right_text_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <com.chay.test.chaysizemanager.otherView.RoundImageView
+                android:id="@+id/size_setting_user_icon_iv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/user_default_ic" />
+
+            <ImageView
+                android:id="@+id/size_setting_user_moren_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/size_setting_false_icon"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="26dp"
+                        android:text="名称"
+                        android:textColor="@color/grey"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="26dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/size_setting_user_name_et"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/size_setting_user_name_connect_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/size_setting_connect_icon" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="26dp"
+                        android:background="@color/space_line" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="26dp"
+                        android:text="性别"
+                        android:textColor="@color/grey"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/size_setting_user_sex_tv"
+                        android:layout_width="146dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="26dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="男"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="26dp"
+                        android:background="@color/space_line" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="26dp"
+                        android:text="身高(cm)"
+                        android:textColor="@color/grey"
+                        android:textSize="10sp" />
+
+                    <EditText
+                        android:id="@+id/size_setting_user_height_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="26dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:gravity="center_vertical"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="26dp"
+                        android:background="@color/space_line" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="26dp"
+                        android:text="体重(kg)"
+                        android:textColor="@color/grey"
+                        android:textSize="10sp" />
+
+                    <EditText
+                        android:id="@+id/size_setting_user_weight_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="26dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:gravity="center_vertical"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="26dp"
+                        android:background="@color/space_line" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/size_setting_user_hide_ll"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="胸围(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_chest_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="腰围(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_waistline_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="臀围(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_hipline_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="头围(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_headline_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="领围(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_collar_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="肩宽(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_shoulder_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="手长(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_hand_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="大腿围(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_leg_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="146dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="26dp"
+                            android:background="@color/space_line" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="足长(cm)"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp" />
+
+                        <EditText
+                            android:id="@+id/size_setting_user_foot_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:text="我是淫荡的占位符-v-"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp"
+                            android:visibility="invisible" />
+
+                        <TextView
+                            android:id="@+id/size_setting_user_detail_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="26dp"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:gravity="center_vertical"
+                            android:text="查看测量示意图>"
+                            android:textColor="#507daf"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="146dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="26dp"
+                    android:background="@color/space_line" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/size_setting_show_rl"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/size_setting_show_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="展开"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/size_setting_show_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:background="@drawable/com_arrow_down" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/space_line"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/page_bg"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/space_line" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_hat_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_hat_man"
+                itemView:leftStringName="帽子"
+                itemView:rightStringName="" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_coat_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_coat"
+                itemView:leftStringName="外衣"
+                itemView:rightStringName="" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_shirt_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_shirt_man"
+                itemView:leftStringName="衬衫"
+                itemView:rightStringName="" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_trousers_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_trousers"
+                itemView:leftStringName="裤子"
+                itemView:rightStringName="" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_underpants_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_underpants_man"
+                itemView:leftStringName="内裤"
+                itemView:rightStringName="" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_shoes_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_shoes_man"
+                itemView:leftStringName="鞋子"
+                itemView:rightStringName="" />
+
+            <com.chay.test.chaysizemanager.itemView.SizeItemView xmlns:itemView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/size_setting_glove_sizeitemview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                itemView:leftDrawable="@drawable/size_setting_glove"
+                itemView:leftStringName="手套"
+                itemView:rightStringName="" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

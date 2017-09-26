@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/pickerview_more_options_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/pickerview_country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="-----我是占位的TextView----"
+            android:textSize="13sp"
+            android:visibility="invisible"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pickerview_country_name"
+            android:layout_marginTop="13.5dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/pickerview_center_bg" />
+
+            <com.chay.test.chaysizemanager.wheelView.lib.WheelView
+                android:layout_width="54dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

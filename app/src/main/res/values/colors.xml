@@ -21,6 +21,7 @@
     <color name="page_bg">#efeff4</color>
     <!-- 透明色 -->
     <color name="transport_color">#00ffffff</color>
+    <color name="line_color">#f1f1f1</color>
 
     <color name="pickerview_wheelview_textcolor_out">#a1a1a1</color>
     <color name="pickerview_wheelview_textcolor_center">#d2041f</color>

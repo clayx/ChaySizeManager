@@ -20,8 +20,8 @@ import android.widget.Toast;
 
 import com.chay.test.chaysizemanager.R;
 import com.chay.test.chaysizemanager.base.BaseNewActivity;
+import com.chay.test.chaysizemanager.info.SizeDaoInfo;
 import com.chay.test.chaysizemanager.info.SizeItemInfo;
-import com.chay.test.chaysizemanager.info.UserSizeDetailInfo;
 import com.chay.test.chaysizemanager.itemView.SizeItemView;
 import com.chay.test.chaysizemanager.listener.SexClickListener;
 import com.chay.test.chaysizemanager.otherView.RippleView;
@@ -39,6 +39,7 @@ import com.chay.test.chaysizemanager.util.Preconditions;
 import com.chay.test.chaysizemanager.util.bean.CategorySizeBean;
 import com.chay.test.chaysizemanager.util.bean.Constant;
 import com.chay.test.chaysizemanager.util.bean.SizeTableBean;
+import com.chay.test.chaysizemanager.util.dao.SizeDaoUtils;
 import com.chay.test.chaysizemanager.util.model.SizeListOperation;
 
 import java.util.HashMap;
@@ -110,17 +111,14 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
 
     //默认为显示
     private boolean isAdd = true;
-    private String sizeId = "";
+    private Long sizeId;
+    private String sizeIdStr = "0";
     //默认性别为男
     private String sex = "男";
     //默认为不是默认尺码
     private String defaultSize = "0";
     //获得尺码数据用户名
     private String sizeUserName = "";
-    //default头像地址
-    private String headUrl = "";
-
-    private UserSizeDetailInfo userSizeDetailInfo;
 
     private ISizeSettingPresenter presenter;
 
@@ -131,6 +129,9 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
     private Map<String, Map<String, String>> maxNumMap;
     private Map<String, List<String>> cateMap;
     private Map<String, CategorySizeBean> categorySizeBeanMap;
+
+    //数据库中默认的pos
+    private int daoDefault = -1;
 
     @Override
     protected View getBackImg() {
@@ -167,12 +168,13 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
         super.handleIntent(intent);
         sizeTableBean = getSizeTableBeanFromAssets();
         isAdd = intent.getBooleanExtra("isAdd", true);
-        sizeId = intent.getStringExtra("sizeId");
-        if (sizeTableBean != null && !isAdd && Preconditions.isNullOrEmpty(sizeId)) {
+        sizeId = intent.getLongExtra("id", 0);
+        sizeIdStr = String.valueOf(sizeId);
+        if (sizeTableBean != null && !isAdd && sizeIdStr.equals("0")) {
             //初始化默认为男士---新增
             personSizeDataBean = sizeTableBean.getSizeTable().get(0);
         }
-        if (sizeTableBean != null && isAdd && !Preconditions.isNullOrEmpty(sizeId)) {
+        if (sizeTableBean != null && isAdd && !sizeIdStr.equals("0")) {
             //性别数据
             sex = intent.getStringExtra("sex");
             if (sex.equals("男")) {
@@ -187,6 +189,23 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
             sizeUserName = intent.getStringExtra("sizeUserName");
         }
 
+        initDaoDefaultPos();
+
+    }
+
+    //获取数据库中的默认角标
+    private void initDaoDefaultPos() {
+        List<SizeDaoInfo> list = SizeDaoUtils.queryAll();
+        if (Preconditions.isNullOrEmpty(list)) {
+            return;
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (!Preconditions.isNullOrEmpty(list.get(i).getIsDefault()) &&
+                        list.get(i).getIsDefault().equals("1")) {
+                    daoDefault = i;
+                }
+            }
+        }
     }
 
     private SizeTableBean getSizeTableBeanFromAssets() {
@@ -205,10 +224,84 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
 
     @Override
     protected void initDatas() {
-        if (!Preconditions.isNullOrEmpty(sizeId)) {
-
+        if (!sizeIdStr.equals("0")) {
+            initSizeData(sizeId);
         } else {
             addDataTopMap(originalData);
+        }
+    }
+
+    //从数据库中获取响应的SizeDaoInfo
+    private void initSizeData(Long sizeId) {
+        List<SizeDaoInfo> list = SizeDaoUtils.queryAll();
+        SizeDaoInfo info = null;
+        if (Preconditions.isNullOrEmpty(list)) {
+            return;
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == sizeId) {
+                info = list.get(i);
+            }
+        }
+
+        loadData2View(info);
+
+        addDataTopMap(originalData);
+
+    }
+
+    //将数据库数据加载到相应的View里
+    private void loadData2View(SizeDaoInfo info) {
+        doTvEdtData(info.getFullName(), size_setting_user_name_et);
+        doTvEdtData(info.getSex(), size_setting_user_sex_tv);
+        doTvEdtData(info.getHeight(), size_setting_user_height_et);
+        doTvEdtData(info.getWeight(), size_setting_user_weight_et);
+        doTvEdtData(info.getChest(), size_setting_user_chest_et);
+        doTvEdtData(info.getWaist(), size_setting_user_waistline_et);
+        doTvEdtData(info.getHip(), size_setting_user_hipline_et);
+        doTvEdtData(info.getHeadCircu(), size_setting_user_headline_et);
+        doTvEdtData(info.getNeckCircu(), size_setting_user_collar_et);
+        doTvEdtData(info.getShoulder(), size_setting_user_shoulder_et);
+        doTvEdtData(info.getHandsLength(), size_setting_user_hand_et);
+        doTvEdtData(info.getThighCircu(), size_setting_user_leg_et);
+        doTvEdtData(info.getFootLength(), size_setting_user_foot_et);
+        doSizeItemViewData(info.getHat(), "INTL", size_setting_hat_sizeitemview);
+        doSizeItemViewData(info.getCoat(), "CN", size_setting_coat_sizeitemview);
+        doSizeItemViewData(info.getShirt(), "INTL", size_setting_shirt_sizeitemview);
+        doSizeItemViewData(info.getTrousers(), "CN", size_setting_trousers_sizeitemview);
+        doSizeItemViewData(info.getUnderpants(), "INTL", size_setting_underpants_sizeitemview);
+        doSizeItemViewData(info.getShoes(), "CN", size_setting_shoes_sizeitemview);
+        doSizeItemViewData(info.getGlove(), "INTL", size_setting_glove_sizeitemview);
+    }
+
+    /**
+     * 将数据放入到相关的View和EditText中
+     *
+     * @param value 具体数据
+     * @param view  相关View
+     */
+    private void doTvEdtData(String value, TextView view) {
+        String checkValue = Preconditions.nullToEmpty(value);
+        view.setText(checkValue);
+    }
+
+    /**
+     * 将数据放入到响应的sizeItemView中
+     *
+     * @param value   传入的具体数据
+     * @param country 国家
+     * @param view    相关View
+     */
+    private void doSizeItemViewData(String value, String country, SizeItemView view) {
+        String checkValue = Preconditions.nullToEmpty(value);
+        view.setRightText(checkValue);
+        if (Preconditions.isNullOrEmpty(checkValue)) {
+            return;
+        }
+        if (country.equals("CN")) {
+            view.setRightDrawable(R.drawable.sizeitem_china);
+        } else {
+            view.setRightDrawable(R.drawable.sizeitem_international);
         }
     }
 
@@ -641,13 +734,23 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
         }
         //设置默认角色
         if (id == R.id.size_setting_user_moren_iv) {
-            Toast.makeText(this,"本地尺码助手没有头像助手",Toast.LENGTH_SHORT).show();
+            if (defaultSize.equals("0")) {
+                setDaoDefault(true);
+            } else {
+                setDaoDefault(false);
+            }
+
         }
         if (id == R.id.right_text) {
             presenter.clearCurrentFocus(SizeSettingActivity.this);
             addDataTopMap(compareData);
 
             if (presenter.compareMap(originalData, compareData)) {
+                if (isAdd) {
+                    Toast.makeText(this, "数据未做任何修改，直接关闭", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "没有新增任何数据，直接关闭", Toast.LENGTH_SHORT).show();
+                }
                 finish();
             } else {
                 saveData();
@@ -688,34 +791,71 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
         }
     }
 
-    // 获得Post数据
-    public Map<String, String> getParams() {
-        Map<String, String> params = new HashMap<>();
-        params.put("fullName", Preconditions.nullToEmpty(size_setting_user_name_et.getText().toString()));
-        params.put("sex", Preconditions.nullToEmpty(size_setting_user_sex_tv.getText().toString()));
-        params.put("height", Preconditions.nullToEmpty(size_setting_user_height_et.getText().toString()));
-        params.put("weight", Preconditions.nullToEmpty(size_setting_user_weight_et.getText().toString()));
-        params.put("chest", Preconditions.nullToEmpty(size_setting_user_chest_et.getText().toString()));
-        params.put("waist", Preconditions.nullToEmpty(size_setting_user_waistline_et.getText().toString()));
-        params.put("hip", Preconditions.nullToEmpty(size_setting_user_hipline_et.getText().toString()));
-        params.put("headCircu", Preconditions.nullToEmpty(size_setting_user_headline_et.getText().toString()));
-        params.put("neckCircu", Preconditions.nullToEmpty(size_setting_user_collar_et.getText().toString()));
-        params.put("shoulder", Preconditions.nullToEmpty(size_setting_user_shoulder_et.getText().toString()));
-        params.put("handsLength", Preconditions.nullToEmpty(size_setting_user_hand_et.getText().toString()));
-        params.put("thighCircu", Preconditions.nullToEmpty(size_setting_user_leg_et.getText().toString()));
-        params.put("footLength", Preconditions.nullToEmpty(size_setting_user_foot_et.getText().toString()));
-        params.put("hat", Preconditions.nullToEmpty(size_setting_hat_sizeitemview.getRightText()));
-        params.put("coat", Preconditions.nullToEmpty(size_setting_coat_sizeitemview.getRightText()));
-        params.put("shirt", Preconditions.nullToEmpty(size_setting_shirt_sizeitemview.getRightText()));
-        params.put("trousers", Preconditions.nullToEmpty(size_setting_trousers_sizeitemview.getRightText()));
-        params.put("underpants", Preconditions.nullToEmpty(size_setting_underpants_sizeitemview.getRightText()));
-        params.put("shoes", Preconditions.nullToEmpty(size_setting_shoes_sizeitemview.getRightText()));
-        params.put("glove", Preconditions.nullToEmpty(size_setting_glove_sizeitemview.getRightText()));
+    //设置默认数据 只有1个
+    private void setDaoDefault(boolean isSet) {
+        List<SizeDaoInfo> list = SizeDaoUtils.queryAll();
+        if (isSet) {
+            defaultSize = "1";
+            if (Preconditions.isNullOrEmpty(list)) {
+                return;
+            } else {
+                for (SizeDaoInfo sizeDaoInfo : list) {
+                    sizeDaoInfo.setIsDefault("0");
+                }
+            }
+        } else {
+            defaultSize = "0";
+            if (Preconditions.isNullOrEmpty(list)) {
+                return;
+            } else {
+                for (int i = 0; i < list.size(); i++) {
+                    if (i == daoDefault) {
+                        list.get(i).setIsDefault("1");
+                    }
+                }
+            }
+        }
 
-        return params;
+        if (defaultSize.equals("0")) {
+            size_setting_user_moren_iv.setBackgroundResource(R.drawable.size_setting_false_icon);
+        } else {
+            size_setting_user_moren_iv.setBackgroundResource(R.drawable.size_setting_true_icon);
+        }
     }
 
-    //保存数据到服务器
+    // 获得需要存储的数据信息
+    public SizeDaoInfo getSizeDao() {
+
+        SizeDaoInfo info = new SizeDaoInfo();
+        if (!sizeIdStr.equals("0")) {
+            info.setId(sizeId);
+        }
+        info.setFullName(Preconditions.nullToEmpty(size_setting_user_name_et.getText().toString()));
+        info.setSex(Preconditions.nullToEmpty(size_setting_user_sex_tv.getText().toString()));
+        info.setHeight(Preconditions.nullToEmpty(size_setting_user_height_et.getText().toString()));
+        info.setWeight(Preconditions.nullToEmpty(size_setting_user_weight_et.getText().toString()));
+        info.setChest(Preconditions.nullToEmpty(size_setting_user_chest_et.getText().toString()));
+        info.setWaist(Preconditions.nullToEmpty(size_setting_user_waistline_et.getText().toString()));
+        info.setHip(Preconditions.nullToEmpty(size_setting_user_hipline_et.getText().toString()));
+        info.setHeadCircu(Preconditions.nullToEmpty(size_setting_user_headline_et.getText().toString()));
+        info.setNeckCircu(Preconditions.nullToEmpty(size_setting_user_collar_et.getText().toString()));
+        info.setShoulder(Preconditions.nullToEmpty(size_setting_user_shoulder_et.getText().toString()));
+        info.setHandsLength(Preconditions.nullToEmpty(size_setting_user_hand_et.getText().toString()));
+        info.setThighCircu(Preconditions.nullToEmpty(size_setting_user_leg_et.getText().toString()));
+        info.setFootLength(Preconditions.nullToEmpty(size_setting_user_foot_et.getText().toString()));
+        info.setHat(Preconditions.nullToEmpty(size_setting_hat_sizeitemview.getRightText()));
+        info.setCoat(Preconditions.nullToEmpty(size_setting_coat_sizeitemview.getRightText()));
+        info.setShirt(Preconditions.nullToEmpty(size_setting_shirt_sizeitemview.getRightText()));
+        info.setTrousers(Preconditions.nullToEmpty(size_setting_trousers_sizeitemview.getRightText()));
+        info.setUnderpants(Preconditions.nullToEmpty(size_setting_underpants_sizeitemview.getRightText()));
+        info.setShoes(Preconditions.nullToEmpty(size_setting_shoes_sizeitemview.getRightText()));
+        info.setGlove(Preconditions.nullToEmpty(size_setting_glove_sizeitemview.getRightText()));
+        info.setIsDefault(Preconditions.nullToEmpty(defaultSize));
+
+        return info;
+    }
+
+    //保存数据到数据库
     public void saveData() {
 
         if (Preconditions.isNullOrEmpty(size_setting_user_name_et.getText().toString())) {
@@ -726,11 +866,10 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
             Toast.makeText(this, "性别不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        Map<String, String> params = getParams();
         //保存数据
-
-        //请求操作执行一次之后设置为不可点击，防止误操作
-        right_text.setClickable(false);
+        SizeDaoUtils.insertSizeDate(getSizeDao());
+        setResult(1001);
+        finish();
     }
 
     /**
@@ -776,6 +915,7 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
         map.put("sex", Preconditions.nullToEmpty(size_setting_user_sex_tv.getText().toString()));
         map.put("height", Preconditions.nullToEmpty(size_setting_user_height_et.getText().toString()));
         map.put("weight", Preconditions.nullToEmpty(size_setting_user_weight_et.getText().toString()));
+        map.put("isDefault", Preconditions.nullToEmpty(defaultSize));
         //循环获取EditText数据
         Set<String> etSet = editMap.keySet();
         Iterator<String> etIterator = etSet.iterator();
@@ -792,7 +932,6 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
             String value = sizeItemViewMap.get(key).getRightText();
             map.put(key, value);
         }
-        map.put("headUrl", headUrl);
     }
 
     /**
@@ -866,26 +1005,13 @@ public class SizeSettingActivity extends BaseNewActivity implements View.OnClick
 
     @Override
     public void onComplete(RippleView rippleView) {
-        presenter.clearCurrentFocus(SizeSettingActivity.this);
-        addDataTopMap(compareData);
-
-        if (presenter.compareMap(originalData, compareData)) {
-            finish();
-        } else {
-            //是否保存
-        }
+        finish();
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            presenter.clearCurrentFocus(SizeSettingActivity.this);
-            addDataTopMap(compareData);
-            if (presenter.compareMap(originalData, compareData)) {
-                finish();
-            } else {
-                //是否保存
-            }
+            finish();
         }
         return false;
     }

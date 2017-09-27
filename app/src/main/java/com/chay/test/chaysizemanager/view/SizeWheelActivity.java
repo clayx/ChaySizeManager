@@ -342,11 +342,15 @@ public class SizeWheelActivity extends BaseNewActivity implements View.OnClickLi
 
     @Override
     public void onComplete(RippleView rippleView) {
-        closeThisPage();
+        finish();
     }
 
-    //关闭此页面
-    public void closeThisPage(){
+    /**
+     * 关闭此页面
+     * 便于二次验证
+     **/
+    /*
+    public void closeThisPage() {
         boolean isClose = true;
         //判断数据是否修改，如果修改，则先保存数据在关闭
         for (int i = 0; i < valueStringList.size(); i++) {
@@ -363,12 +367,13 @@ public class SizeWheelActivity extends BaseNewActivity implements View.OnClickLi
             saveData();
         }
     }
+    */
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
-            closeThisPage();
+            finish();
         }
         return false;
     }
